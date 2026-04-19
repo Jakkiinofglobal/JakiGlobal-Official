@@ -1,6 +1,38 @@
+@ -1,64 +1,108 @@
 <!DOCTYPE html>
+<html>
 <html  >
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    background: black;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+
+    /* 🔥 FADE */
+    transition: opacity 1.2s ease;
+  }
+
+  video.fade-out {
+    opacity: 0;
+  }
   <!-- Site made with Mobirise Website Builder v6.1.12, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +50,18 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=zgciTE"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=zgciTE" type="text/css">
 
+  /* 📱 MOBILE FIX */
+  @media (max-width: 768px) {
+    video {
+      object-fit: contain;
+    }
+  }
+</style>
   
   
   
 </head>
+
 <body>
   
   <section data-bs-version="5.1" class="menu menu3 cid-sFAA5oUu2Y" once="menu" id="menu3-4">
@@ -57,6 +97,9 @@
     </nav>
 </section>
 
+<video autoplay muted playsinline id="introVideo">
+  <source src="assets/video/Black%20White%20and%20Yellow%20Modern%20Welcome%20Video.mp4" type="video/mp4">
+</video>
 <section data-bs-version="5.1" class="content4 cid-sFADQxFnEn" id="content4-5">
     
     
@@ -71,11 +114,32 @@
     </div>
 </section>
 
+<script>
+  const video = document.getElementById("introVideo");
 <section data-bs-version="5.1" class="video2 cid-vfhu3teoIE" id="video2-s">
-
-<div class="row justify-content-center mt-4"> <div class="col-12 col-md-12 video-block"> <div class="video-wrapper"><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/-BSQlJxCDcI?rel=0&amp;amp;mute=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;playlist=-BSQlJxCDcI" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
-
+    
+    
+    
+    <div class="container-fluid">
+        
+        <div class="row justify-content-center mt-4">
+            <div class="col-12 col-md-12 video-block">
+                <div class="video-wrapper"><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/-BSQlJxCDcI?rel=0&amp;amp;mute=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;playlist=-BSQlJxCDcI" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+                
+            </div>
+        </div>
+    </div>
 </section>
+
+  video.onended = function () {
+    video.classList.add("fade-out");
+<section data-bs-version="5.1" class="footer7 cid-vfhz7yshEs" once="footers" id="footer7-t">
+
+    setTimeout(() => {
+      window.location.href = "page6.html";
+    }, 1200);
+  };
+</script>
     
 
     
@@ -89,7 +153,8 @@
             </div>
         </div>
     </div>
- 
+  
   
 </body>
+</html>
 </html>
