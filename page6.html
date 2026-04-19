@@ -240,21 +240,64 @@
     </div>
 </section>
 
-<section id="video1-m" style="background:black; padding:40px 0;">
+<section id="video1-m" style="background:black; padding:40px 0; position:relative;">
 
-  <div style="max-width:1000px; margin:auto;">
-    
-    <video controls autoplay muted playsinline 
-    style="width:100%; height:auto; display:block;">
-      
-      <source src="assets/video/vyzo.mp4" type="video/mp4">
-    
-    </video>
+  <div style="max-width:1000px; margin:auto; position:relative;">
+
+    <!-- VIDEO -->
+    <iframe 
+      id="vyzoFrame"
+      width="100%" 
+      height="500"
+      src="https://www.youtube.com/embed/WvU-PUWTUmc?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&enablejsapi=1"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+
+    <!-- PLACEHOLDER IMAGE (hidden at first) -->
+    <img 
+      id="vyzoPlaceholder"
+      src="assets/images/vyzop.jpg"
+      style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:none; cursor:pointer;"
+    />
 
   </div>
 
 </section>
 
+<script>
+  let player;
+  let done = false;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('vyzoFrame', {
+      events: {
+        'onStateChange': function(event) {
+          // When video ends
+          if (event.data === 0 && !done) {
+            document.getElementById("vyzoPlaceholder").style.display = "block";
+            document.getElementById("vyzoFrame").style.display = "none";
+            done = true;
+          }
+        }
+      }
+    });
+  }
+
+  // Load YouTube API
+  let tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
+
+  // Click image to replay
+  document.getElementById("vyzoPlaceholder").onclick = function() {
+    document.getElementById("vyzoPlaceholder").style.display = "none";
+    document.getElementById("vyzoFrame").style.display = "block";
+    player.seekTo(0);
+    player.playVideo();
+  };
+</script>
     
 
     
