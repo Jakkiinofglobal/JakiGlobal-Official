@@ -23,15 +23,23 @@
     height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
+
+    /* 🔥 FADE */
+    transition: opacity 1.2s ease;
   }
 
-  /* 🔥 MOBILE FIX */
-  @media (max-width: 768px) {
-  video {
-    object-fit: contain;
+  video.fade-out {
+    opacity: 0;
   }
-}
+
+  /* 📱 MOBILE FIX */
+  @media (max-width: 768px) {
+    video {
+      object-fit: contain;
+    }
+  }
 </style>
+  
 </head>
 
 <body>
