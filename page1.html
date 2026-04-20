@@ -343,34 +343,31 @@
     </div>
   </section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://jakiglobal.online/page" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://jakiglobal.online/page6.html">JakiGlobal </a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
 
-  <script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.querySelector('.embla__container');
-  const slides = document.querySelectorAll('.embla__slide');
 
-  if (!container || slides.length === 0) return;
+  if (!container) return;
 
-  // clone first slide
-  const firstClone = slides[0].cloneNode(true);
-  container.appendChild(firstClone);
+  // duplicate all slides for seamless loop
+  container.innerHTML += container.innerHTML;
 
-  let index = 0;
-  let total = document.querySelectorAll('.embla__slide').length;
+  let position = 0;
 
-  setInterval(() => {
-    index++;
-    container.style.transition = "transform 0.6s ease";
-    container.style.transform = `translateX(-${index * 100}%)`;
+  function animate() {
+    position += 0.2; // SPEED (lower = slower, higher = faster)
 
-    if (index === total - 1) {
-      setTimeout(() => {
-        container.style.transition = "none";
-        container.style.transform = "translateX(0)";
-        index = 0;
-      }, 600);
+    container.style.transform = `translateX(-${position}px)`;
+
+    // reset smoothly when halfway
+    if (position >= container.scrollWidth / 2) {
+      position = 0;
     }
 
-  }, 2000);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 });
 </script>
   <style>
