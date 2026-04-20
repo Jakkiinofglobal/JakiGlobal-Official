@@ -11,7 +11,47 @@
     background: black;
     overflow: hidden;
     height: 100%;
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    background: black;
+    overflow: hidden;
   }
+
+  video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted playsinline id="introVideo">
+  <source src="assets/video/Black%20White%20and%20Yellow%20Modern%20Welcome%20Video.mp4" type="video/mp4">
+</video>
+
+<script>
+  const video = document.getElementById("introVideo");
+
+  video.onended = function () {
+    window.location.href = "page6.html"; // your home page
+  };
+</script>
+
+</body>
+</html>
 
   video {
     position: fixed;
